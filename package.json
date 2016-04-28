@@ -1,0 +1,42 @@
+{
+  "name": "test_reds",
+  "version": "4.2.1",
+  "description": "test_reds",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^2.0.45",
+    "reds": "*",
+    "redis": "*",
+    "double-ended-queue": "^2.1.0-0",
+    "redis-commands": "*",
+    "redis-parser": "*",
+    "natural": "*",
+    "underscore": "*",
+    "apparatus": "*",
+    "sylvester": "*",
+    "log4js": "*",
+    "wordpos": "*",
+    "commander":"*",
+    "wordnet-db":"*",
+    "tar": "*",
+    "util": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProgrammerYuan/TestReds.git"
+  },
+  "keywords": [
+    "reds"
+  ],
+  "author": "ProgrammerYuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProgrammerYuan/TestReds/issues"
+  },
+  "homepage": "https://github.com/ProgrammerYuan/TestReds#readme"
+}
