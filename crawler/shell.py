@@ -13,9 +13,12 @@ class Shell:
     self.crawler.load()
     try:
       while True: 
-        raw_command = raw_input('>> ')
-        self.run_command(raw_command)
-        self.crawler.dump()
+        try:
+          raw_command = raw_input('>> ')
+          self.run_command(raw_command)
+          self.crawler.dump()
+        except KeyboardInterrupt:
+          print 'Interrupted'
     except EOFError as e:
       print 'Finished'
     finally:
@@ -30,6 +33,7 @@ class Shell:
       if obj == 'programs':
         return cmd,obj,rest
       else:
+        print >>sys.stderr, 'Error command: %s' % raw_command
         exit(1)
     elif cmd == 'add':
       sub,rest = rest.split(' ', 1)
@@ -38,6 +42,7 @@ class Shell:
       elif sub == 'program':
         return cmd,sub,rest
       else:
+        print >>sys.stderr, 'Error command: %s' % raw_command
         exit(1)
 
   def run_command(self, raw_command):
@@ -47,14 +52,14 @@ class Shell:
       if cmd_tuple[1] == 'schools':
         names = self.crawler.school_collection.get_school_names()
         for idx,name in enumerate(names):
-          print '[%3d]: %s' % (idx,name)
+          print '[%3d]: \x1b[36m%s\x1b[0m' % (idx,name)
       elif cmd_tuple[1] == 'programs':
         school = self.crawler.school_collection.find_school_by_id(int(cmd_tuple[2]))
         school_name = school.name
         progs = self.crawler.school_collection.get_school_programs(school_name)
+        print '\x1b[36m%s\x1b[0m' % school_name
         for idx,prog in enumerate(progs):
-          print '[%3d]' % idx
-          pprint(prog.toJSON()) 
+          print '[%3d] \x1b[33m%s\x1b[0m %s' % (idx, prog.name, prog.url)
     elif cmd_tuple[0] == 'add':
       if cmd_tuple[1] == 'school':
         self.crawler.school_collection.insert_school(cmd_tuple[2])
@@ -63,9 +68,9 @@ class Shell:
         school_name = school.name
         print 'Add program to school %s ...' % school_name
         prog_data = {
-            'name': raw_input('... Name: ').strip(),
-            'url':  raw_input('... URL:  ').strip(),
-            'dept': raw_input('... Dept: ').strip()
+            'name': raw_input('... \x1b[33mName:\x1b[0m ').strip(),
+            'url':  raw_input('... \x1b[33mURL: \x1b[0m ').strip(),
+            'dept': raw_input('... \x1b[33mDept:\x1b[0m ').strip()
         }
         self.crawler.add_program(school_name,prog_data,override_program=True)
 

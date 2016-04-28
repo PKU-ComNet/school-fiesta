@@ -88,7 +88,6 @@ class SchoolCollection:
     return names
 
   def get_school_programs(self, school_name):
-    print school_name
     school = self.find_school(school_name)
     return school.list_programs()
 
