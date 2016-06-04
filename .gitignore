@@ -67,3 +67,8 @@ target/
 # misc
 .venv/
 cache/
+
+# nodes
+node_modules/
+
+.DS_Store
