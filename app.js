@@ -1,10 +1,12 @@
 
 var express = require('express');
+var morgan = require('morgan');
 var BodyParser = require('body-parser');
 var app = express();
 var controller = require('./controller');
 var port = 8889;
 
+app.use(morgan('dev'));
 // express static router
 app.use(express.static('public'));
 // body parser
@@ -21,9 +23,9 @@ app.route('/upload').post(function (req, res) {
   controller.searchByText(search_text, function (err, data) {
     if (err) {
       res.writeHead(401);
-      return res.send(err);
+      return res.json(err);
     }
-    return res.send(data); 
+    return res.json(data);
   });
 });
 
@@ -37,9 +39,9 @@ app.route('/upload_neo').post(function (req, res) {
   controller.searchByCategory(search_text, function (err, data) {
     if (err) {
       res.writeHead(401);
-      return res.send(err);
+      return res.json(err);
     }
-    return res.send(data);
+    return res.json(data);
   });
 });
 

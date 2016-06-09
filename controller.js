@@ -33,6 +33,8 @@ Controller.prototype.initialize = function (json_file_name) {
     var name = school_info["name"];
     var programs = school_info["progs"];
     programs.forEach(function (program_info) {
+      // hot patch
+      program_info.school_name = school_info['name'];
       _client.hmset(redis_key  + ":essays:" + (count++), program_info);
       string_list.push(program_info['text']);
     });
@@ -57,7 +59,12 @@ Controller.prototype.searchByIndex = function (ids, callback) {
       // if no error, add a new entry to the list
       var url = obj['url'];
       var name = obj['name'];
-      result.push({ id: id, url: url, name: name });
+      var school_name = obj['school_name']
+      result.push({ 
+        id: id, 
+        url: url,
+        name: name,
+        school_name: school_name });
       return cb(null);
     });
   }, function (err) {
