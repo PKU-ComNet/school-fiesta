@@ -14,7 +14,7 @@
           integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
           crossorigin="anonymous"></script>
   <!-- Angular JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="vendor/angular/angular.min.js"></script>
   <script src="js/app.js"></script>
 </head>
 <body>
@@ -57,10 +57,11 @@
   </div>
   <!-- search result -->
   <div class="col-lg-4 col-lg-3-offset">
-    <h4 ng-if="Object.keys(schools).length > 0">Schools</h4>
+    <!-- <h4 ng-if="Object.keys(schools).length > 0">Schools</h4> -->
     <div class="list-group">
-      <a href="#"
+      <a href="#projectList"
          ng-repeat="(school_name, school) in schools"
+         ng-click="schoolFilter(school_name)"
          class="list-group-item">
         <b>{{ school_name }}</b>
         <span class="badge">{{ school.count }}</span>
@@ -68,10 +69,9 @@
     </div>
   </div>
   <div class="col-lg-8">
-    <h4 ng-if="projects.length > 0">Projects</h4>
-    <ul class="list-group">
-      <a ng-href="{{ project.url }}"
-         ng-repeat="project in projects"
+    <!-- <h4 ng-if="projects.length > 0">Projects</h4> -->
+    <ul id="projectList" class="list-group">
+      <a ng-href="{{ project.url }}" ng-repeat="project in projects"
          class="list-group-item">
         {{ project.name }},
         <i>{{ project.school_name }}</i>
@@ -85,7 +85,7 @@
         integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
         crossorigin="anonymous"></script>
 <!-- main scripts -->
-<script src="js/main.js"></script>
+<!-- <script src="js/main.js"></script> -->
 
 </body>
 </html>

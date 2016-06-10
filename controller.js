@@ -36,7 +36,7 @@ Controller.prototype.initialize = function (json_file_name) {
       // hot patch
       program_info.school_name = school_info['name'];
       _client.hmset(redis_key  + ":essays:" + (count++), program_info);
-      string_list.push(program_info['text']);
+      string_list.push(program_info['text'].toLowerCase());
     });
   });
   string_list.forEach(function (str, i) { 

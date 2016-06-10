@@ -8,6 +8,7 @@ app.controller('SearchController',
   function SearchController($scope, $http) {
     // initialized empty list
     $scope.projects = [];
+    $scope.full_projects = [];
     $scope.schools  = {};
     // initialized empty string
     $scope.search_text = ""; 
@@ -29,6 +30,7 @@ app.controller('SearchController',
       $http.post(search_url, { text: $scope.search_text })
         .success(function (data) {
           $scope.projects = data;
+          $scope.full_projects = data;
           $scope.schools  = {};
           // calculate schools
           data.forEach(function (project) {
@@ -47,4 +49,10 @@ app.controller('SearchController',
         })
         .error(function (err) { throw err; });
     };
+    // filtering
+    $scope.schoolFilter = function (school_name) {
+      $scope.projects = $scope.full_projects.filter(function (project) {
+        return project.school_name === school_name;
+      });
+    }
   });

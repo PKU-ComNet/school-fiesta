@@ -1,4 +1,3 @@
-
 var express = require('express');
 var morgan = require('morgan');
 var BodyParser = require('body-parser');
@@ -15,7 +14,7 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 // /upload router
 app.route('/upload').post(function (req, res) {
-  var search_text = req.body['text'];
+  var search_text = req.body['text'].toLowerCase();
   if (search_text === null) {
     res.writeHead(401);
     return res.send('Search text should not be empty');
@@ -31,7 +30,7 @@ app.route('/upload').post(function (req, res) {
 
 // /uploadNeo
 app.route('/upload_neo').post(function (req, res) {
-  var search_text = req.body['text'];
+  var search_text = req.body['text'].toLowerCase();
   if (search_text === null) {
     res.writeHead(401);
     return res.send('Search text should not be empty');
