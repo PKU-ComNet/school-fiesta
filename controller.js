@@ -15,7 +15,7 @@ var ProcessEssay = require('./ProcessEssay');
 /* Controller class */
 var Controller = function () {
   this.search = reds.createSearch(redis_key);
-  this.client = redis.createClient();
+  this.client = redis.createClient(process.env.REDIS_URL || null);
 };
 
 Controller.prototype.initialize = function (json_file_name) {
