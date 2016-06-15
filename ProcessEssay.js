@@ -1,7 +1,7 @@
 /**
  * Created by ProgrammerYuan on 16/5/18.
  */
-var reds = require('reds');
+var reds = require('./reds');
 var natural = require('natural');
 var fs = require('fs');
 var util = require('util');

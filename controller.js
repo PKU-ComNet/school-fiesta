@@ -3,7 +3,7 @@
  */
 
 /* reds and redis service */
-var reds = require('reds');
+var reds = require('./reds');
 var redis = require("redis");
 var redis_key = "schoolFiesta1"
 var fs = require('fs');
@@ -15,7 +15,7 @@ var ProcessEssay = require('./ProcessEssay');
 /* Controller class */
 var Controller = function () {
   this.search = reds.createSearch(redis_key);
-  this.client = redis.createClient(process.env.REDIS_URL || null);
+  this.client = redis.createClient(process.env.REDIS_URL);
 };
 
 Controller.prototype.initialize = function (json_file_name) {
