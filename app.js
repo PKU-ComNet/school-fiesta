@@ -3,7 +3,7 @@ var morgan = require('morgan');
 var BodyParser = require('body-parser');
 var app = express();
 var controller = require('./controller');
-var port = 8889;
+var port = process.env.PORT;
 
 app.use(morgan('dev'));
 // express static router
