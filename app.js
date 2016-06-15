@@ -44,7 +44,7 @@ app.route('/upload_neo').post(function (req, res) {
   });
 });
 
-app.listen(8889, function () {
+app.listen(port, function () {
   console.log('Application started on port ' + port);
   console.log('Initializing reds and redis ...');
   controller.initialize('./schools.json');
